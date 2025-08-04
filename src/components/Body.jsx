@@ -85,11 +85,12 @@ const Body = () => {
             // console.log("button clicked");
             //Filter logic goes here
             const FilteredList = listOfRestaurants.filter(
-              (res) => res?.info.avgRating > 4.3
+              (res) => res?.info.avgRating > 4.4
             );
             // console.log(listOfRestaurants);
             // console.log(FilteredList);
-            setListOfRestaurants(FilteredList);
+            // setListOfRestaurants(FilteredList);
+            setFilteredListOfRestaurants(FilteredList);
           }}
         >
           Top Rated Restaurants
