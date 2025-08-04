@@ -1,9 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-import restaurantObjList from "../utils/mockData";
 import { useEffect, useState } from "react";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState(restaurantObjList);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -17,6 +16,11 @@ const Body = () => {
     // console.log("Data" + data);
     const json = await data.json();
     console.log(json);
+    // now render the app again with data
+    setListOfRestaurants(
+      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
 
   // const fetchData = async () => {
@@ -34,7 +38,13 @@ const Body = () => {
   //     console.error("API Error:", error.message);
   //   }
   // };
-
+  if (listOfRestaurants.length === 0) {
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
   return (
     <div className="body-container">
       <div className="filter">
@@ -44,7 +54,7 @@ const Body = () => {
             // console.log("button clicked");
             //Filter logic goes here
             const FilteredList = listOfRestaurants.filter(
-              (res) => res?.info.avgRating > 4
+              (res) => res?.info.avgRating > 4.3
             );
             // console.log(listOfRestaurants);
             // console.log(FilteredList);
@@ -55,12 +65,8 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {/* <RestaurantCard resData={restaurantObjList[0]} />
-        <RestaurantCard resData={restaurantObjList[1]} />
-        <RestaurantCard resData={restaurantObjList[2]} /> */}
-
         {/* looping over an array using map function */}
-        {listOfRestaurants.map((restaurant) => (
+        {listOfRestaurants?.map((restaurant) => (
           <RestaurantCard key={restaurant?.info.id} resData={restaurant} />
         ))}
       </div>
