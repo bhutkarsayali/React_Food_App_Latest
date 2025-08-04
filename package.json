@@ -2,7 +2,6 @@
   "name": "react_food_app",
   "version": "1.0.0",
   "description": "Online food order app in react JS",
-  "main": "App.js",
   "scripts": {
     "test": "jest"
   },
