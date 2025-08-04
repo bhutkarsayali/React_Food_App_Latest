@@ -3,50 +3,7 @@ import restaurantObjList from "../utils/mockData";
 import { useState } from "react";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([
-    {
-      info: {
-        id: "1003414",
-        name: "Pizza Hut",
-        cloudinaryImageId:
-          "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/a1e023e4-bdf3-4bcb-b4d9-2498ba52528e_1003414.JPG",
-        costForTwo: "₹350 for two",
-        cuisines: ["Pizzas"],
-        avgRating: 4.3,
-        sla: {
-          slaString: "40-45 mins",
-        },
-      },
-    },
-    {
-      info: {
-        id: "1003415",
-        name: "KFC",
-        cloudinaryImageId:
-          "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/a1e023e4-bdf3-4bcb-b4d9-2498ba52528e_1003414.JPG",
-        costForTwo: "₹350 for two",
-        cuisines: ["Pizzas"],
-        avgRating: 4.3,
-        sla: {
-          slaString: "40-45 mins",
-        },
-      },
-    },
-    {
-      info: {
-        id: "1003416",
-        name: "MCD",
-        cloudinaryImageId:
-          "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/a1e023e4-bdf3-4bcb-b4d9-2498ba52528e_1003414.JPG",
-        costForTwo: "₹350 for two",
-        cuisines: ["Pizzas"],
-        avgRating: 3.3,
-        sla: {
-          slaString: "40-45 mins",
-        },
-      },
-    },
-  ]);
+  const [listOfRestaurants, setListOfRestaurants] = useState(restaurantObjList);
 //   let listOfRestaurants2 = [
 //     {
 //       info: {
