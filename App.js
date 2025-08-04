@@ -81,20 +81,23 @@ const Header = () => {
 const RestaurantCard = (props) => {
   // console.log(props);
   const { resData } = props;
+  const {cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla} = resData?.info;
 
   return (
     <div className="res-card" style={StyleCard}>
       <img
         src={
           "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          resData.info.cloudinaryImageId
+          cloudinaryImageId
         }
       />
-      <h3 className="title">{resData.info.name}</h3>
-      <h4>{resData.info.cuisines}</h4>
-      <h4>{resData.info.avgRating}</h4>
-      <h4>{resData.info.costForTwo}</h4>
-      <h4>{resData.info.sla.slaString}</h4>
+      {/* {console.log(Array.isArray(resData.info.cuisines), resData.info.cuisines)} */}
+      
+      <h3 className="title">{name}</h3>
+      <h4>{cuisines?.join(", ")}</h4>
+      <h4>{avgRating}</h4>
+      <h4>{costForTwo}</h4>
+      <h4>{sla.slaString}</h4>
     </div>
   );
 };
@@ -364,6 +367,8 @@ const Body = () => {
       <div className="search"></div>
       <div className="res-container">
         <RestaurantCard resData={restaurantObjList[0]} />
+        <RestaurantCard resData={restaurantObjList[1]} />
+        <RestaurantCard resData={restaurantObjList[2]} />
       </div>
     </div>
   );
