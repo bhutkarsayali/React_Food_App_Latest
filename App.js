@@ -78,13 +78,13 @@ const Header = () => {
   );
 };
 
-const RestaurantCard = (props) => {
-  console.log(props);
+const RestaurantCard = ({resName, cuisine}) => {
+  // console.log(props);
   return (
     <div className="res-card" style={StyleCard}>
       <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/8/31/fa2b070a-7908-4ac7-b66f-f63633284c0d_951058.jpg"/>
-      <h3 className="title">{props.resName}</h3>
-      <h4>{props.cuisine}</h4>
+      <h3 className="title">{resName}</h3>
+      <h4>{cuisine}</h4>
       <h4>4.4 Stars</h4>
       <h4>38 minutes</h4>
     </div>
