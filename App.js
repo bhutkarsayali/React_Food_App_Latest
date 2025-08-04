@@ -81,7 +81,10 @@ const Header = () => {
 const RestaurantCard = (props) => {
   // console.log(props);
   const { resData } = props;
-  const {cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla} = resData?.info;
+  console.log(resData);
+
+  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
+    resData?.info;
 
   return (
     <div className="res-card" style={StyleCard}>
@@ -92,7 +95,7 @@ const RestaurantCard = (props) => {
         }
       />
       {/* {console.log(Array.isArray(resData.info.cuisines), resData.info.cuisines)} */}
-      
+
       <h3 className="title">{name}</h3>
       <h4>{cuisines?.join(", ")}</h4>
       <h4>{avgRating}</h4>
@@ -366,9 +369,14 @@ const Body = () => {
     <div className="body-container">
       <div className="search"></div>
       <div className="res-container">
-        <RestaurantCard resData={restaurantObjList[0]} />
+        {/* <RestaurantCard resData={restaurantObjList[0]} />
         <RestaurantCard resData={restaurantObjList[1]} />
-        <RestaurantCard resData={restaurantObjList[2]} />
+        <RestaurantCard resData={restaurantObjList[2]} /> */}
+
+        {/* looping over an array using map function */}
+        {restaurantObjList.map((restaurant) => (
+          <RestaurantCard key={restaurant?.info.id} resData={restaurant} />
+        ))}
       </div>
     </div>
   );
