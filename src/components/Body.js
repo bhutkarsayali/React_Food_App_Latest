@@ -1,66 +1,53 @@
 import RestaurantCard from "./RestaurantCard";
 import restaurantObjList from "../utils/mockData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(restaurantObjList);
-//   let listOfRestaurants2 = [
-//     {
-//       info: {
-//         id: "1003414",
-//         name: "Pizza Hut",
-//         cloudinaryImageId:
-//           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/a1e023e4-bdf3-4bcb-b4d9-2498ba52528e_1003414.JPG",
-//         costForTwo: "₹350 for two",
-//         cuisines: ["Pizzas"],
-//         avgRating: 4.3,
-//         sla: {
-//           slaString: "40-45 mins",
-//         },
-//       },
-//     },
-//     {
-//       info: {
-//         id: "1003415",
-//         name: "KFC",
-//         cloudinaryImageId:
-//           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/a1e023e4-bdf3-4bcb-b4d9-2498ba52528e_1003414.JPG",
-//         costForTwo: "₹350 for two",
-//         cuisines: ["Pizzas"],
-//         avgRating: 4.3,
-//         sla: {
-//           slaString: "40-45 mins",
-//         },
-//       },
-//     },
-//     {
-//       info: {
-//         id: "1003416",
-//         name: "MCD",
-//         cloudinaryImageId:
-//           "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/a1e023e4-bdf3-4bcb-b4d9-2498ba52528e_1003414.JPG",
-//         costForTwo: "₹350 for two",
-//         cuisines: ["Pizzas"],
-//         avgRating: 3.3,
-//         sla: {
-//           slaString: "40-45 mins",
-//         },
-//       },
-//     },
-//   ];
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5073514&lng=73.8076543&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    // console.log("Data" + data);
+    const json = await data.json();
+    console.log(json);
+  };
+
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5073514&lng=73.8076543&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  //     );
+
+  //     if (!response.ok) throw new Error("Failed to fetch data");
+
+  //     const json = await response.json();
+  //     console.log("Fetched JSON:", json);
+  //     // Optionally extract cards and update state here
+  //   } catch (error) {
+  //     console.error("API Error:", error.message);
+  //   }
+  // };
+
   return (
     <div className="body-container">
       <div className="filter">
         <button
           className="filter-btn"
           onClick={() => {
-            console.log("button clicked");
+            // console.log("button clicked");
             //Filter logic goes here
             const FilteredList = listOfRestaurants.filter(
               (res) => res?.info.avgRating > 4
             );
             // console.log(listOfRestaurants);
-            console.log(FilteredList);
+            // console.log(FilteredList);
             setListOfRestaurants(FilteredList);
           }}
         >
