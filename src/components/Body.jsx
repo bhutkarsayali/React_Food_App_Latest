@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -38,14 +39,10 @@ const Body = () => {
   //     console.error("API Error:", error.message);
   //   }
   // };
-  if (listOfRestaurants.length === 0) {
-    return (
-      <div className="spinner-container">
-        <div className="spinner"></div>
-      </div>
-    );
-  }
-  return (
+
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body-container">
       <div className="filter">
         <button
@@ -75,3 +72,4 @@ const Body = () => {
 };
 
 export default Body;
+ 
