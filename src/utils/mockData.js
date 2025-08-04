@@ -1,4 +1,4 @@
-const restaurantObjList = [
+let restaurantObjList = [
   {
     "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
     info: {
