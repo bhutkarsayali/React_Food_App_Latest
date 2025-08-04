@@ -8,7 +8,8 @@ const Body = () => {
     []
   );
   const [searchText, setSearchText] = useState("");
-
+  // const [page, setPage] = useState(1);
+  // const [isFetching, setIsFetching] = useState(false);
   console.log("Body Rendered");
 
   useEffect(() => {
@@ -49,6 +50,53 @@ const Body = () => {
   //     console.error("API Error:", error.message);
   //   }
   // };
+
+  // Fetch next page using POST
+  // const fetchMoreRestaurants = async () => {
+  //   if (isFetching) return;
+  //   setIsFetching(true);
+  //   try {
+  //     const response = await fetch(
+  //       "https://www.swiggy.com/dapi/restaurants/list/update",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           lat: 18.5073514,
+  //           lng: 73.8076543,
+  //           page: page + 1,
+  //         }),
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     const newCards = data?.data?.cards || [];
+
+  //     setRestaurants((prev) => [...prev, ...newCards]);
+  //     setPage((prev) => prev + 1);
+  //   } catch (error) {
+  //     console.error("POST update error:", error);
+  //   } finally {
+  //     setIsFetching(false);
+  //   }
+  // };
+
+  // // Scroll event listener
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const bottomOffset = 300; // Trigger when within 300px of bottom
+  //     if (
+  //       window.innerHeight + document.documentElement.scrollTop >=
+  //       document.documentElement.offsetHeight - bottomOffset
+  //     ) {
+  //       fetchMoreRestaurants();
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [page, isFetching]);
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -101,6 +149,11 @@ const Body = () => {
         {filteredListOfRestaurants?.map((restaurant) => (
           <RestaurantCard key={restaurant?.info.id} resData={restaurant} />
         ))}
+
+        {/* 
+        {isFetching && (
+          <p style={{ textAlign: "center" }}>Loading more restaurants...</p>
+        )} */}
       </div>
     </div>
   );
