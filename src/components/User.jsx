@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
+import { GITHUB_AVATAR_URL } from "../utils/constants";
 
 const User = (props) => {
   const [count, setCount] = useState(0);
   const [count2, setCount2] = useState(1);
+  const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     fetchUserInfo();
   }, []);
 
-  const fetchUserInfo = async() => {
+  const fetchUserInfo = async () => {
     const data = await fetch("https://api.github.com/users/bhutkarsayali");
     const json = await data.json();
     console.log(json);
-  }
+    setUserInfo(json);
+  };
+  const { login, location, id, avatar_url } = userInfo;
   return (
     <div className="user-card">
       <h1>Functional Component</h1>
@@ -25,8 +29,10 @@ const User = (props) => {
         Count Increase
       </button>
       <h1>Count : {count2}</h1>
-      <h2>Name: {props.name}</h2>
-      <h2>Location: {props.location}</h2>
+      <img src={avatar_url} />
+      <h2>Name: {login}</h2>
+      <h2>Location: {location ?? "Pune"}</h2>
+      <h2>Id: {id}</h2>
     </div>
   );
 };

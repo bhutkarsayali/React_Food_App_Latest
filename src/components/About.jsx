@@ -5,9 +5,9 @@ const About = () => {
   return (
     <>
       <h1 className="about-title">About Us</h1>
-      <User name={"Sayali Function"} location={"Pune"} />
+      <User />
       <hr></hr>
-      <UserClass name={"Sayali Class"} location={"Pune"} />
+      <UserClass />
     </>
   );
 };
