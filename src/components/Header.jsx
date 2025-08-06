@@ -14,15 +14,15 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
-      <div className="logo">
-        <img src={LOGO_URL} />
+    <div className="header !w-[100vw] flex justify-between shadow-2xl shadow-amber-950 sm:bg-green-100 md:bg-amber-200 lg:bg-red-200">
+      <div className="logo flex justify-between items-center">
+        <img className="w-30 h-30" src={LOGO_URL} />
         <span>
           {internetStatus ? (
             <div
               className="green-dot"
               style={{
-                backgroundColor: "rgb(29, 172, 29)",
+                backgroundColor: "rgb(29, 172, 29)", 
               }}
             >
               Online
@@ -36,22 +36,22 @@ const Header = () => {
           )}
         </span>
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>
+      <div className="nav-items p-4 flex justify-between items-center">
+        <ul className="flex justify-between items-center">
+          <li className="p-5">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="p-5">
             <Link to="/about">About Us</Link>
           </li>
-          <li>
+          <li className="p-5">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>
+          <li className="p-5">
             <Link to="/grocery">Grocery</Link>
           </li>
           <button
-            className="login-btn"
+            className="login-btn ml-5 p-2"
             onClick={() => {
               btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
             }}

@@ -13,7 +13,7 @@ const RestaurantCard = (props) => {
     resData?.info;
 
   return (
-    <div className="res-card" style={StyleCard}>
+    <div className="res-card h-full flex flex-col justify-between bg-white p-4 !hover:bg-red-20" style={StyleCard}>
       <img
         src={CDN_URL
            +

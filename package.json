@@ -30,9 +30,11 @@
     "util": "^0.12.5"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.7.1"
+    "react-router-dom": "^7.7.1",
+    "tailwindcss": "^4.1.11"
   },
   "browserslist": [
     "last 2 version"

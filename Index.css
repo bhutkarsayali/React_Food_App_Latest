@@ -1,8 +1,10 @@
+@import "tailwindcss";
+
 html,
 body {
   font-family: "Poppins", sans-serif;
 }
-#heading {
+/* #heading {
   color: red;
 }
 .header {
@@ -34,7 +36,7 @@ body {
   list-style-type: none;
   padding: 0 20px;
   font-size: 24px;
-}
+} */
 
 .res-container,
 .shimmer-container {

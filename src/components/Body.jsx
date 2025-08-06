@@ -108,7 +108,7 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body-container">
+    <div className="body-container !w-[100vw]">
       <div className="filter">
         <div className="search">
           <input
@@ -151,7 +151,7 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
-      <div className="res-container">
+      <div className="res-container grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* looping over an array using map function */}
         {filteredListOfRestaurants?.map((restaurant) => (
           <Link

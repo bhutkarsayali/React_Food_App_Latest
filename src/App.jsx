@@ -73,7 +73,7 @@ const GroceryLazyLoaded = lazy(() => import("./components/Grocery"));
 const AboutLazyLoaded = lazy(() => import("./components/About"));
 const AppLayout = () => {
   return (
-    <div className="container">
+    <div className="container !w-[100vw]">
       {/** Keep header inract and change below children routes */}
       <Header />
       <Outlet />
