@@ -1,13 +1,15 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
-import About from "./components/About";
+// import About from "./components/About";
 import Contact from "./components/Contact";
+// import Grocery from "./components/Grocery";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
-import './../Index.css';
+import "./../Index.css";
+import Shimmer from "./components/Shimmer";
 
 /**
  * <div id="parent">
@@ -66,7 +68,9 @@ import './../Index.css';
 // };
 
 /**************************FOOD DELIVERY APP *****************************/
-
+//Lazy loading
+const GroceryLazyLoaded = lazy(() => import("./components/Grocery"));
+const AboutLazyLoaded = lazy(() => import("./components/About"));
 const AppLayout = () => {
   return (
     <div className="container">
@@ -89,7 +93,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h2>Please Wait Loading...</h2>}>
+            <AboutLazyLoaded />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -98,6 +106,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <GroceryLazyLoaded />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

@@ -24,10 +24,14 @@ const Header = () => {
               style={{
                 backgroundColor: "rgb(29, 172, 29)",
               }}
-            >Online</div>
+            >
+              Online
+            </div>
           ) : (
             <>
-              <div className="red-dot" style={OfflineStatusColor}>Offline</div>
+              <div className="red-dot" style={OfflineStatusColor}>
+                Offline
+              </div>
             </>
           )}
         </span>
@@ -42,6 +46,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <button
             className="login-btn"
