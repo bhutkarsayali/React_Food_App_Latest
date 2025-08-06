@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { RESTAURANTS_LIST_API } from "../utils/constants";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -12,7 +13,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   // const [page, setPage] = useState(1);
   // const [isFetching, setIsFetching] = useState(false);
-  console.log("Body Rendered");
+  // console.log("Body Rendered");
 
   useEffect(() => {
     fetchData();
@@ -23,7 +24,7 @@ const Body = () => {
 
     // console.log("Data" + data);
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     // now render the app again with data
     setListOfRestaurants(
       json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
@@ -97,6 +98,12 @@ const Body = () => {
   //   window.addEventListener("scroll", handleScroll);
   //   return () => window.removeEventListener("scroll", handleScroll);
   // }, [page, isFetching]);
+  const internetStatus = useOnlineStatus();
+  if (internetStatus === false) {
+    return (
+      <h1>Looks like you are offline, please check your internet connection</h1>
+    );
+  }
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />

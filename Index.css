@@ -14,6 +14,8 @@ body {
 
 .header .logo {
   height: 150px;
+  display: flex;
+  align-items: center;
 }
 .header .logo img {
   width: 150px;
@@ -213,4 +215,16 @@ body {
 }
 .about-title {
   color: red;
+}
+
+.green-dot,
+.red-dot {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }

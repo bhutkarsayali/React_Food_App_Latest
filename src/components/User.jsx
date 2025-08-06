@@ -12,7 +12,7 @@ const User = (props) => {
   const fetchUserInfo = async () => {
     const data = await fetch("https://api.github.com/users/bhutkarsayali");
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     setUserInfo(json);
   };
   const { login, location, id, avatar_url } = userInfo;
