@@ -7,28 +7,47 @@ const StyleCard = {
 const RestaurantCard = (props) => {
   // console.log(props);
   const { resData } = props;
-  // console.log(resData);
+  console.log(resData);
 
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
-    resData?.info;
+    resData?.info ?? {};
 
   return (
-    <div className="res-card h-full flex flex-col justify-between bg-white p-4 !hover:bg-red-20" style={StyleCard}>
-      <img
-        src={CDN_URL
-           +
-          cloudinaryImageId
-        }
-      />
+    <div
+      className="res-card"
+      style={StyleCard}
+    >
+      <img src={CDN_URL + cloudinaryImageId} />
       {/* {console.log(Array.isArray(resData.info.cuisines), resData.info.cuisines)} */}
 
       <h3 className="title">{name}</h3>
       <h4>{cuisines?.join(", ")}</h4>
       <h4>{avgRating}</h4>
       <h4>{costForTwo}</h4>
-      <h4>{sla.slaString}</h4>
+      <h4>{sla?.slaString}</h4>
     </div>
   );
 };
 
+// Higher Order Component
+// Contract is :
+// Input RestaurantCard ==> output - RestaurantCardPromoted
+// It takes original component as input
+// And Returns a component
+// that component again returns some JSX
+
+export const withPromotedLabel = (RestaurantCard) => {
+  // returns component
+  return (props) => {
+    // component returns JSX with the original component
+    return (
+      <div>
+        <label className="absolute bg-black/70 text-white p-3 text-sm py-1 rounded shadow-lg shadow-black uppercase tracking-wide">
+          Promoted
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
 export default RestaurantCard;

@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { RESTAURANTS_LIST_API } from "../utils/constants";
@@ -35,6 +35,8 @@ const Body = () => {
         ?.restaurants
     );
   };
+
+  console.log("listOfRestaurants", listOfRestaurants);
 
   // const fetchData = async () => {
   //   try {
@@ -105,14 +107,15 @@ const Body = () => {
     );
   }
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body-container !w-[100vw]">
-      <div className="filter">
+      <div className="filter mx-20 my-5">
         <div className="search">
           <input
-            className="search-input"
+            className="search-input bg-white shadow-lg shadow-black"
             type="text"
             value={searchText}
             onChange={(e) => {
@@ -158,14 +161,17 @@ const Body = () => {
             to={"/restaurant/" + restaurant?.info.id}
             key={restaurant?.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {
+              /* If the restaurant is promoted/is opened and have ratings greater than 4.3 then add promoted label to it */
+              restaurant?.info?.avgRating > 4.3 &&
+              restaurant?.info?.availability?.opened ? (
+                <RestaurantCardPromoted resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )
+            }
           </Link>
         ))}
-
-        {/* 
-        {isFetching && (
-          <p style={{ textAlign: "center" }}>Loading more restaurants...</p>
-        )} */}
       </div>
     </div>
   );
