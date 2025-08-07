@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const RestaurantCategory = (props) => {
   const { data, showitems, setShowIndex, currIndex, showIndex } = props;
-  console.log(props);
+//   console.log(props);
   const handleClick = () => {
     setShowIndex(showIndex === currIndex ? null : currIndex);
   };

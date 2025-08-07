@@ -30,10 +30,10 @@ const RestaurantMenu = () => {
     resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || {};
 
-  console.log(
-    "itemCards",
-    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-  );
+  // console.log(
+  //   "itemCards",
+  //   resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  // );
 
   const itemCategories =
     resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
@@ -43,7 +43,7 @@ const RestaurantMenu = () => {
           "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory")
     );
 
-  console.log("itemCategories", itemCategories);
+  // console.log("itemCategories", itemCategories);
 
   return (
     <div className="resMenu-container">

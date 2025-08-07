@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
@@ -12,7 +13,9 @@ const Header = () => {
   const OfflineStatusColor = {
     backgroundColor: "red",
   };
-
+  const dataFromContext = useContext(UserContext);
+  const { loggedInUser } = dataFromContext;
+  console.log(dataFromContext);
   return (
     <div className="header !w-[100vw] flex justify-between shadow-2xl shadow-amber-950 sm:bg-green-100 md:bg-amber-200 lg:bg-red-200">
       <div className="logo flex justify-between items-center">
@@ -22,7 +25,7 @@ const Header = () => {
             <div
               className="green-dot"
               style={{
-                backgroundColor: "rgb(29, 172, 29)", 
+                backgroundColor: "rgb(29, 172, 29)",
               }}
             >
               Online
@@ -50,6 +53,7 @@ const Header = () => {
           <li className="p-5">
             <Link to="/grocery">Grocery</Link>
           </li>
+          <li className="p-5 font-bold">{loggedInUser}</li>
           <button
             className="login-btn ml-5 p-2"
             onClick={() => {
