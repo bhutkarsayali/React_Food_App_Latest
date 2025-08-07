@@ -3,17 +3,17 @@ import ItemList from "./ItemList";
 import { useState } from "react";
 
 const RestaurantCategory = (props) => {
-  const { data, showitems, setShowIndex } = props;
+  const { data, showitems, setShowIndex, currIndex, showIndex } = props;
   console.log(props);
   const handleClick = () => {
-    setShowIndex();
+    setShowIndex(showIndex === currIndex ? null : currIndex);
   };
   return (
     <div className="shadow shadow-black mb-5">
       {/* Accordion Header */}
       <div
         onClick={handleClick}
-        className="flex justify-between items-center  bg-red-300"
+        className="flex justify-between items-center  bg-red-300 cursor-pointer"
       >
         <h2 className="font-bold text-white p-5 flex justify-between items-center">
           {data?.title} ({data.itemCards.length})
