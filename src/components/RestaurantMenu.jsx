@@ -3,6 +3,7 @@ import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const params = useParams();
@@ -11,6 +12,8 @@ const RestaurantMenu = () => {
 
   // Creating custom hook
   const resInfo = useRestaurantMenu(resId);
+
+  const [showIndex, setShowIndex] = useState(0);
 
   if (resInfo === null) {
     return <Shimmer />;
@@ -63,17 +66,20 @@ const RestaurantMenu = () => {
 
       <h2 className="menu">Menu</h2>
       {/* Accordion with its separate component */}
-      {itemCategories.map((category) => (
-        <RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} />
+      {itemCategories.map((category, index) => (
+        // controlled component
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+          showitems={index === showIndex ? true : false}
+          setShowIndex = {() => setShowIndex(index)}
+        />
       ))}
 
       {/* Accordion Without its separate component */}
       {itemCategories.map((category, index) => {
         return (
-          <div
-            key={index}
-            className="shadow shadow-black"
-          >
+          <div key={index} className="shadow shadow-black">
             <h2 className="font-bold text-white p-5 flex justify-between items-center bg-cyan-900">
               {category?.card?.card?.title}
             </h2>
@@ -90,14 +96,6 @@ const RestaurantMenu = () => {
           </div>
         );
       })}
-      {/* <ul>
-        <h4>{title}</h4>
-        {itemCards.map((item) => (
-          <li key={item?.card?.info?.id}>
-            {item?.card?.info?.name} : Rs. {item?.card?.info?.price / 100}
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };

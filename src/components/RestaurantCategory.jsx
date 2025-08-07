@@ -3,18 +3,16 @@ import ItemList from "./ItemList";
 import { useState } from "react";
 
 const RestaurantCategory = (props) => {
-  const [showitems, setShowItems] = useState(false);
-  const { data } = props;
+  const { data, showitems, setShowIndex } = props;
   console.log(props);
   const handleClick = () => {
-    // setShowItems(true);
-    setShowItems(!showitems);
+    setShowIndex();
   };
   return (
     <div className="shadow shadow-black mb-5">
       {/* Accordion Header */}
       <div
-        onClick={() => handleClick()}
+        onClick={handleClick}
         className="flex justify-between items-center  bg-red-300"
       >
         <h2 className="font-bold text-white p-5 flex justify-between items-center">
