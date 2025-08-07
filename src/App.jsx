@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,6 +10,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import "./../Index.css";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 
 /**
  * <div id="parent">
@@ -72,12 +73,24 @@ import Shimmer from "./components/Shimmer";
 const GroceryLazyLoaded = lazy(() => import("./components/Grocery"));
 const AboutLazyLoaded = lazy(() => import("./components/About"));
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    //some authentication code for loggedin user
+    const data = {
+      name: "Sayali Bhutkar",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <div className="container !w-[100vw]">
-      {/** Keep header inract and change below children routes */}
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName }}>
+      <div className="container !w-[100vw]">
+        {/** Keep header inract and change below children routes */}
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
