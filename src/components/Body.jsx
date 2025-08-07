@@ -36,7 +36,7 @@ const Body = () => {
     );
   };
 
-  console.log("listOfRestaurants", listOfRestaurants);
+  // console.log("listOfRestaurants", listOfRestaurants);
 
   // const fetchData = async () => {
   //   try {
@@ -126,7 +126,7 @@ const Body = () => {
             className="filter-btn search"
             onClick={() => {
               //Filter restaurant card and update the UI
-              console.log(searchText);
+              // console.log(searchText);
               let filteredListOfRestaurants = listOfRestaurants.filter((res) =>
                 res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
               );

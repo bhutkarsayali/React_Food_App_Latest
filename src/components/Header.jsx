@@ -6,8 +6,8 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const internetStatus = useOnlineStatus();
-  console.log("Header Rendererd");
-  console.log(internetStatus);
+  // console.log("Header Rendererd");
+  // console.log(internetStatus);
 
   const OfflineStatusColor = {
     backgroundColor: "red",

@@ -2,6 +2,7 @@ import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const params = useParams();
@@ -22,16 +23,30 @@ const RestaurantMenu = () => {
     costForTwoMessage,
   } = resInfo?.cards?.[2]?.card?.card?.info || {};
 
-  const { itemCards = [], title } =
+  const { itemCards = [] } =
     resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || {};
-  console.log(itemCards);
+
+  console.log(
+    "itemCards",
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  );
+
+  const itemCategories =
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (c) =>
+        c.card.card?.["@type"] ==
+        ("type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+          "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory")
+    );
+
+  console.log("itemCategories", itemCategories);
 
   return (
     <div className="resMenu-container">
       <div className="resMenu-header">
         <div className="text">
-          <h1>{name}</h1>
+          <h1 className="font-bold text-2xl text-orange-700">{name}</h1>
           <h2>{city}</h2>
           <h3>
             {cuisines.join(",")} : {costForTwoMessage}
@@ -47,14 +62,42 @@ const RestaurantMenu = () => {
       </div>
 
       <h2 className="menu">Menu</h2>
-      <ul>
+      {/* Accordion with its separate component */}
+      {itemCategories.map((category) => (
+        <RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} />
+      ))}
+
+      {/* Accordion Without its separate component */}
+      {itemCategories.map((category, index) => {
+        return (
+          <div
+            key={index}
+            className="shadow shadow-black"
+          >
+            <h2 className="font-bold text-white p-5 flex justify-between items-center bg-cyan-900">
+              {category?.card?.card?.title}
+            </h2>
+            <div>
+              <ul>
+                {itemCards.map((item) => (
+                  <li key={item?.card?.info?.id}>
+                    {item?.card?.info?.name} : Rs.
+                    {item?.card?.info?.price / 100}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        );
+      })}
+      {/* <ul>
         <h4>{title}</h4>
         {itemCards.map((item) => (
           <li key={item?.card?.info?.id}>
-            {item?.card?.info?.name} : Rs. {item?.card?.info?.price / 100}{" "}
+            {item?.card?.info?.name} : Rs. {item?.card?.info?.price / 100}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
