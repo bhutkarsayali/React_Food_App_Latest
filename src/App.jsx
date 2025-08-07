@@ -84,7 +84,7 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: userName }}>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
       <div className="container !w-[100vw]">
         {/** Keep header inract and change below children routes */}
         <Header />

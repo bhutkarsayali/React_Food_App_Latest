@@ -1,9 +1,10 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { RESTAURANTS_LIST_API } from "../utils/constants";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -108,11 +109,17 @@ const Body = () => {
   }
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
+  const setDataFromContext = useContext(UserContext);
+  // Or do this => const { setUserName } = useContext(UserContext);
+  console.log(setDataFromContext);
+
+  const { setUserName, loggedInUser } = setDataFromContext;
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body-container !w-[100vw]">
-      <div className="filter mx-20 my-5">
+      <div className="filter mx-20 my-1 flex justify-between">
         <div className="search">
           <input
             className="search-input bg-white shadow-lg shadow-black"
@@ -153,6 +160,13 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <div className="flex items-center">
+          <label className="mr-1">Username : </label>
+          <input
+            className="search-input bg-white shadow-lg shadow-black !w-[200px]"
+            type="text" value ={loggedInUser} onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="res-container grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* looping over an array using map function */}
