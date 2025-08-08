@@ -6,9 +6,10 @@ import { addItem } from "../utils/redux-store-slices/cartSlice";
 const ItemList = ({ items }) => {
   //   console.log("items", items);
   const dispatch = useDispatch();
-  const handleAddItem = () => {
+  const handleAddItem = (item) => {
     //dispact an action here
-    dispatch(addItem("Pizza"));
+    // dispatch(addItem("Pizza"));
+    dispatch(addItem(item));
   };
   return (
     <div>
@@ -36,7 +37,7 @@ const ItemList = ({ items }) => {
                 }
               />
               <button
-                onClick={handleAddItem}
+                onClick={() => handleAddItem(item)}
                 className="border-1 border-green-600 bg-white p-1 uppercase absolute bottom-2 left-0 right-0 w-[80px] m-auto cursor-pointer text-sm text-green-600 rounded"
               >
                 ADD +
