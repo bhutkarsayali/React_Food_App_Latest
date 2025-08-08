@@ -16,9 +16,11 @@ const Header = () => {
   };
   const dataFromContext = useContext(UserContext);
   const { loggedInUser } = dataFromContext;
-  console.log(dataFromContext);
+  // console.log(dataFromContext);
 
+  // Subscribing to the store using selector
   const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
   return (
     <div className="header !w-[100vw] flex justify-between shadow-2xl shadow-amber-950 sm:bg-green-100 md:bg-amber-200 lg:bg-red-200">
       <div className="logo flex justify-between items-center">
