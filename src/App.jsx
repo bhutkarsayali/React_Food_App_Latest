@@ -11,6 +11,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import "./../Index.css";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 /**
  * <div id="parent">
@@ -84,13 +86,15 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div className="container !w-[100vw]">
-        {/** Keep header inract and change below children routes */}
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="container !w-[100vw]">
+          {/** Keep header inract and change below children routes */}
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
