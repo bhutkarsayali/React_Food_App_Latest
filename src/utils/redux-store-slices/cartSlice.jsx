@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -14,7 +14,11 @@ const cartSlice = createSlice({
       state.action.pop();
     },
     clearCart: (state) => {
+      // console.log(state) Not allowed by redux, use below code instead
+      console.log(current(state));
+      // RTK says either mutate the sate or return a new state
       state.items.length = 0;
+      // OR return {items: []} - this new [] will be replaced inside originalState = []
     },
   },
 });
