@@ -3,6 +3,20 @@ import Contact from "../Contact";
 import "@testing-library/jest-dom";
 
 describe("Contact page test cases", () => {
+  //helper functions
+  beforeAll(() => {
+    console.log("Before All");
+  });
+  beforeEach(() => {
+    console.log("Before Each");
+  });
+  afterAll(() => {
+    console.log("After All");
+  });
+  afterEach(() => {
+    console.log("After Each");
+  });
+  
   test("should load contact us component", () => {
     //check if contact component is got loaded onto the dom or not?
     //whenever testing UI componnet in react, first render that component into jsdom
