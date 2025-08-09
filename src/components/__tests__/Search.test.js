@@ -56,3 +56,35 @@ it("Should render the Body component and should search resList for Pizza- text i
   // 8.
   expect(cardsAfterSearch.length).toBe(2);
 });
+
+it("Should render the Body component and should filter top rated restaurants", async () => {
+  await act(async () =>
+    render(
+      <BrowserRouter>
+        <Body />
+      </BrowserRouter>
+    )
+  );
+
+  // 1. before top rated filter my cards.length should be 8
+  const cardsBeforeFilter = screen.getAllByTestId("rescard");
+
+  // 2.
+  expect(cardsBeforeFilter.length).toBe(8);
+
+  //3.
+  const topRatedBtn = screen.getByRole("button", {
+    name: "Top Rated Restaurants",
+  });
+
+  //now click on btn
+  // 5.
+  fireEvent.click(topRatedBtn);
+
+  //7.
+  const cardsAfterFilter = screen.getAllByTestId("rescard");
+
+  //now length of filtered cards should be 2
+  // 8.
+  expect(cardsAfterFilter.length).toBe(2);
+});
