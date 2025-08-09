@@ -16,7 +16,7 @@ const RestaurantCard = (props) => {
 
   const { loggedInUser } = useContext(UserContext);
   return (
-    <div className="res-card" style={StyleCard}>
+    <div data-testid="rescard" className="res-card" style={StyleCard}>
       <img src={CDN_URL + cloudinaryImageId} />
       {/* {console.log(Array.isArray(resData.info.cuisines), resData.info.cuisines)} */}
 

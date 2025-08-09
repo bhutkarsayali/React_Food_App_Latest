@@ -122,6 +122,7 @@ const Body = () => {
       <div className="filter mx-20 my-1 flex justify-between">
         <div className="search">
           <input
+          data-testid="searchInput"
             className="search-input bg-white shadow-lg shadow-black"
             type="text"
             value={searchText}
